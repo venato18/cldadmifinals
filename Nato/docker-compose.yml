@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+ web:
+    image: venato/nato-php
+    container_name: php
+    links:
+      - "db:nato_default"
+    depends_on:
+      - db
+    volumes:
+      - ./var/www/html/
+    ports:
+       - "8000:80"
+    stdin_open: true
+    tty: true
+
+
+
+ db:
+    image: venato/nato-db
+    container_name: db
+    ports:
+      - "3306:3306"
+
